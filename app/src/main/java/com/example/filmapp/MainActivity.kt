@@ -19,10 +19,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         DB = DBHelper(this)
 
-        editID = findViewById(R.id.editTextText)
-        editPwd = findViewById(R.id.editTextTextPassword)
-        loginBtn = findViewById(R.id.button)
-        registerBtn = findViewById(R.id.button2)
+        editID = findViewById(R.id.idEditText)
+        editPwd = findViewById(R.id.passEditText)
+        loginBtn = findViewById(R.id.loginBtn)
+        registerBtn = findViewById(R.id.registerBtn)
 
         loginBtn.setOnClickListener {
             var str_id: String = editID.text.toString()

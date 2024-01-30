@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 class HomeActivity : AppCompatActivity() {
     lateinit var sqlDB: SQLiteDatabase
-    lateinit var initBtn: Button
+    lateinit var resetBtn: Button
     var DB: DBHelper?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,8 +16,8 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
         DB = DBHelper(this)
 
-        initBtn = findViewById(R.id.button3)
-        initBtn.setOnClickListener {
+        resetBtn = findViewById(R.id.resetBtn)
+        resetBtn.setOnClickListener {
             sqlDB = DB!!.writableDatabase
             DB!!.onUpgrade(sqlDB, 1, 2)
             sqlDB.close()

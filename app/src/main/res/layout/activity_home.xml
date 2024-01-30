@@ -7,7 +7,7 @@
     tools:context=".HomeActivity">
 
     <EditText
-        android:id="@+id/editTextText3"
+        android:id="@+id/helloText"
         android:minHeight="48dp"
         android:minWidth="48dp"
         android:layout_width="wrap_content"
@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/resetBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="161dp"
@@ -36,5 +36,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText3" />
+        app:layout_constraintTop_toBottomOf="@+id/helloText" />
 </androidx.constraintlayout.widget.ConstraintLayout>
