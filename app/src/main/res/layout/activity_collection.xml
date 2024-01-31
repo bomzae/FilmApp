@@ -12,7 +12,7 @@
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="관심 영화 등록"
+        android:text="컬렉션 등록"
         android:textSize="25sp"
         android:textStyle="bold" />
 
@@ -174,7 +174,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="줄거리"
+                android:text="기대되는 점"
                 android:textSize="20sp"
                 android:layout_marginBottom="5dp" />
 
