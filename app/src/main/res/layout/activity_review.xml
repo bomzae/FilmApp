@@ -18,7 +18,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="532dp"
+        android:layout_height="620dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
         android:orientation="vertical">
@@ -40,11 +40,11 @@
 
             <EditText
                 android:id="@+id/edt_title"
-                android:minWidth="48dp"
-                android:minHeight="48dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="영화 제목을 입력하세요." />
+                android:hint="영화 제목을 입력하세요."
+                android:minWidth="48dp"
+                android:minHeight="48dp" />
 
         </LinearLayout>
 
@@ -65,11 +65,11 @@
 
             <EditText
                 android:id="@+id/edt_director"
-                android:minWidth="48dp"
-                android:minHeight="48dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="감독을 입력하세요." />
+                android:hint="감독을 입력하세요."
+                android:minWidth="48dp"
+                android:minHeight="48dp" />
 
         </LinearLayout>
 
@@ -90,13 +90,13 @@
 
             <Spinner
                 android:id="@+id/spn_genre"
-                android:minWidth="48dp"
-                android:minHeight="48dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:entries="@array/genre_array"
-                android:hint="장르를 선택하세요." />
+                android:hint="장르를 선택하세요."
+                android:minWidth="48dp"
+                android:minHeight="48dp" />
 
         </LinearLayout>
 
@@ -118,14 +118,14 @@
 
             <EditText
                 android:id="@+id/edt_date"
-                android:minWidth="48dp"
-                android:minHeight="48dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:focusable="false"
                 android:hint="시청한 일자를 입력하세요."
-                android:onClick="showDatePickerDialog"
                 android:inputType="none"
-                android:focusable="false" />
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                android:onClick="showDatePickerDialog" />
 
         </LinearLayout>
 
@@ -151,10 +151,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:isIndicator="false"
                 android:numStars="5"
                 android:rating="0"
-                android:stepSize="0.5"
-                android:isIndicator="false"  />
+                android:stepSize="0.5" />
 
         </LinearLayout>
 
@@ -167,26 +167,27 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="줄거리"
                 android:layout_marginBottom="5dp"
+                android:text="줄거리"
                 android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/edt_summary"
                 android:layout_width="match_parent"
-                android:layout_height="228dp"
+                android:layout_height="161dp"
                 android:background="#F4DCF4"
                 android:gravity="top|left"
                 android:hint="기억에 남는 내용을 입력하세요." />
 
         </LinearLayout>
 
-    </LinearLayout>
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="저장" />
 
-    <Button
-        android:id="@+id/btn_save"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="저장" />
+    </LinearLayout>
 
 </LinearLayout>
