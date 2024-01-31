@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="genre_array">
+        <item>코믹</item>
+        <item>멜로</item>
+        <item>공포</item>
+        <item>가족</item>
+        <item>로맨스</item>
+        <item>액션</item>
+        <item>스릴러</item>
+        <item>드라마</item>
+        <item>범죄</item>
+        <item>판타지</item>
+        <item>사극</item>
+        <item>애니메이션</item>
+        <item>기타</item>
+    </string-array>
+</resources>

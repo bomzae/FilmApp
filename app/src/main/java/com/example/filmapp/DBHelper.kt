@@ -9,6 +9,9 @@ class DBHelper(context: Context?) : SQLiteOpenHelper(context, "Login.db", null, 
     // 테이블 생성
     override fun onCreate(MyDB: SQLiteDatabase) {
         MyDB.execSQL("create Table users(username TEXT primary key, password TEXT)")
+        MyDB.execSQL("create Table film(filmname TEXT primary key, director TEXT)")
+        MyDB.execSQL("create Table review(username TEXT primary key, filmname TEXT primary key, review TEXT)")
+        MyDB.execSQL("create Table collection(username TEXT primary key, filmname TEXT)")
     }
 
     // 테이블 삭제 후 재생성
