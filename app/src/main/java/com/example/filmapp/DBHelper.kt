@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
 class DBHelper(context: Context?) : SQLiteOpenHelper(context, "Login.db", null, 1) {
-    lateinit var currentUser: String
+    var currentUser: String ?= null
 
     // 테이블 생성
     override fun onCreate(MyDB: SQLiteDatabase) {
@@ -81,7 +81,7 @@ class DBHelper(context: Context?) : SQLiteOpenHelper(context, "Login.db", null, 
         )
         if (cursor.count <= 0) res = false
 
-        if (res) currentUser = username
+        if (res == true) currentUser = username
 
         return res
     }
