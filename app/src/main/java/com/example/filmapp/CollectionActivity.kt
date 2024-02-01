@@ -3,6 +3,8 @@ package com.example.filmapp
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -11,13 +13,23 @@ import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.drawable.toBitmap
+import java.io.ByteArrayOutputStream
 import java.util.Calendar
 
 class CollectionActivity : AppCompatActivity() {
     lateinit var saveBtn: Button // 리뷰 저장 버튼
     var DB:DBHelper?=null
+
+    private lateinit var edt_title: EditText
+    private lateinit var edt_director: EditText
+    private lateinit var spn_genre: Spinner
+    private lateinit var edt_date: EditText
+    private lateinit var ed_acter: EditText
+    private lateinit var img_selected_photo: ImageView
 
     private lateinit var editTextDate: EditText
     private val PICK_IMAGE_REQUEST = 1
@@ -30,12 +42,18 @@ class CollectionActivity : AppCompatActivity() {
         DB = DBHelper(this)
         saveBtn = findViewById(R.id.btn_save)
         saveBtn.setOnClickListener {// DB에 저장 후 메인 페이지로 이동
-
-            Toast.makeText(
-                this@CollectionActivity,
-                "등록되었습니다.",
-                Toast.LENGTH_SHORT
-            ).show()
+            val insert = DB!!.insertCollection(edt_title.text.toString(), edt_director.text.toString(), spn_genre.selectedItem.toString(), edt_date.text.toString(), ed_acter.text.toString(), getByteArrayFromDrawble(img_selected_photo.drawable))
+            if (insert == true) {
+                Toast.makeText(
+                    this@CollectionActivity,
+                    "저장되었습니다.",
+                    Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(
+                    this@CollectionActivity,
+                    "오류가 발생했습니다.",
+                    Toast.LENGTH_SHORT).show()
+            }
 
             val loginIntent = Intent(this@CollectionActivity, HomeActivity::class.java)
             startActivity(loginIntent)
@@ -81,5 +99,16 @@ class CollectionActivity : AppCompatActivity() {
             imageView.setImageURI(selectedImageUri)
             imageView.visibility = View.VISIBLE
         }
+    }
+
+    // 이미지 저장 함수
+    fun getByteArrayFromDrawble(d: Drawable): ByteArray { // drawable을 비트맵 변환 후 바이트 배열로 변환
+        var bitmap: Bitmap = d.toBitmap()
+        val stream: ByteArrayOutputStream = ByteArrayOutputStream()
+
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+        val data: ByteArray = stream.toByteArray()
+
+        return data
     }
 }

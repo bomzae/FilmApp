@@ -38,7 +38,7 @@ class RegisterActivity : AppCompatActivity() {
                 if (str_pwd == str_repwd) { // 비밀번호와 비밀번호 재입력이 같은 경우
                     val checkUsername = DB!!.checkUsername(str_id) // DB에서 이미 있는 유저와 아이디가 겹치는지 체크
                     if (checkUsername == false) { // 아이디가 겹치지 않으면 DB에 등록, 가입 성공
-                        val insert = DB!!.insertData(str_id, str_pwd)
+                        val insert = DB!!.insertUser(str_id, str_pwd)
                         if (insert == true) {
                             Toast.makeText(
                                 this@RegisterActivity,

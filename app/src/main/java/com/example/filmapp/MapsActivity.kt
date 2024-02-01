@@ -90,8 +90,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         // 자동완성 위한 경계 설정
         val bounds = RectangularBounds.newInstance(
-            LatLng(-34.041458, 150.790100),
-            LatLng(-33.682247, 151.383362)
+            LatLng(37.532600, 127.024612),
+            LatLng(37.532600, 127.024612)
         )
         autocompleteFragment.setLocationBias(bounds)
     }
@@ -157,8 +157,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         googleMap.clear()
 
         val bounds = RectangularBounds.newInstance(
-            LatLng(-33.880490, 151.184363),
-            LatLng(-33.858754, 151.229596)
+            LatLng(37.532600, 127.024612),
+            LatLng(37.532600, 127.024612)
         )
 
         // Create a request to find nearby cinemas
@@ -203,7 +203,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             }
     }
 
-    private fun handleCallbackLocation() {
+    private fun handleFallbackLocation() {
         // 예시로 사용할 위치 서울로 설정(예: 마지막 위치가 널인 경우)
         val fallbackLocation = LatLng(37.532600, 127.024612)
         // MyLocation 활성화 전에 위치 권한이 부여되었는지 확인
