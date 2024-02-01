@@ -17,7 +17,7 @@ class HomeActivity : AppCompatActivity() {
     lateinit var sqlDB: SQLiteDatabase
     lateinit var resetBtn: Button // DB 초기화 버튼
     var DB: DBHelper?=null
-    lateinit var filmFragment: Fragment
+    lateinit var rankFragment: Fragment
     lateinit var locationFragment: Fragment
     lateinit var myFragment: Fragment
 
@@ -26,23 +26,25 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        filmFragment = FilmFragment()
+        rankFragment = RankFragment()
         locationFragment = LocationFragment()
         myFragment = MyFragment()
 
-        supportFragmentManager.beginTransaction().add(R.id.tab_layout_container, filmFragment).commit()
+        supportFragmentManager.beginTransaction().add(R.id.tab_layout_container, rankFragment).commit()
 
         val tabLayout = findViewById<View>(R.id.tabLayout) as TabLayout
 
         tabLayout.addOnTabSelectedListener(object : OnTabSelectedListener {
             override fun onTabSelected(tab: Tab) {
                 val position = tab.position
-                var selected: Fragment? = null
+                var selected: Fragment?=null
 
                 if (position == 0) {
-                    selected = filmFragment
+                    selected = rankFragment
                 } else if (position == 1) {
                     selected = locationFragment
+                    val intent = Intent(applicationContext, MapsActivity::class.java)
+                    startActivity(intent)
                 } else if (position == 2) {
                     selected = myFragment
                 }

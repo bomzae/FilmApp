@@ -126,7 +126,6 @@
                 android:minHeight="48dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="showDatePickerDialog"
                 android:inputType="none"
                 android:focusable="false"
                 android:hint="개봉일을 입력하세요."/>

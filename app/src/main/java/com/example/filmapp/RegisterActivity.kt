@@ -1,11 +1,11 @@
 package com.example.filmapp
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 
 class RegisterActivity : AppCompatActivity() {
     lateinit var enterID: EditText // 아이디 입력 텍스트
@@ -33,8 +33,8 @@ class RegisterActivity : AppCompatActivity() {
             if (str_id == "" || str_pwd == "" || str_repwd == "") Toast.makeText(
                 this@RegisterActivity,
                 "회원 정보를 모두 입력해주세요.",
-                Toast.LENGTH_SHORT
-            ).show() else {
+                Toast.LENGTH_SHORT).show()
+            else {
                 if (str_pwd == str_repwd) { // 비밀번호와 비밀번호 재입력이 같은 경우
                     val checkUsername = DB!!.checkUsername(str_id) // DB에서 이미 있는 유저와 아이디가 겹치는지 체크
                     if (checkUsername == false) { // 아이디가 겹치지 않으면 DB에 등록, 가입 성공
