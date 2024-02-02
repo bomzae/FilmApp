@@ -39,6 +39,13 @@ class CollectionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_collection)
 
+        edt_title = findViewById(R.id.edt_title)
+        edt_director = findViewById(R.id.edt_director)
+        spn_genre = findViewById(R.id.spn_genre)
+        edt_date = findViewById(R.id.edt_date)
+        ed_acter = findViewById(R.id.ed_acter)
+        img_selected_photo = findViewById(R.id.img_selected_photo)
+
         DB = DBHelper(this)
         saveBtn = findViewById(R.id.btn_save)
         saveBtn.setOnClickListener {// DB에 저장 후 메인 페이지로 이동
@@ -102,7 +109,7 @@ class CollectionActivity : AppCompatActivity() {
     }
 
     // 이미지 저장 함수
-    fun getByteArrayFromDrawble(d: Drawable): ByteArray { // drawable을 비트맵 변환 후 바이트 배열로 변환
+    private fun getByteArrayFromDrawble(d: Drawable): ByteArray { // drawable을 비트맵 변환 후 바이트 배열로 변환
         var bitmap: Bitmap = d.toBitmap()
         val stream: ByteArrayOutputStream = ByteArrayOutputStream()
 

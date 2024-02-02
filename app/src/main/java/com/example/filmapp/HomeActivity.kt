@@ -1,7 +1,6 @@
 package com.example.filmapp
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.view.View
@@ -18,7 +17,7 @@ class HomeActivity : AppCompatActivity() {
     lateinit var resetBtn: Button // DB 초기화 버튼
     var DB: DBHelper?=null
     lateinit var rankFragment: Fragment
-    lateinit var locationFragment: Fragment
+    lateinit var searchFragment: Fragment
     lateinit var myFragment: Fragment
 
     @SuppressLint("WrongViewCast")
@@ -27,7 +26,7 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
 
         rankFragment = RankFragment()
-        locationFragment = LocationFragment()
+        searchFragment = SearchFragment()
         myFragment = MyFragment()
 
         supportFragmentManager.beginTransaction().add(R.id.tab_layout_container, rankFragment).commit()
@@ -42,9 +41,7 @@ class HomeActivity : AppCompatActivity() {
                 if (position == 0) {
                     selected = rankFragment
                 } else if (position == 1) {
-                    selected = locationFragment
-                    val intent = Intent(applicationContext, MapsActivity::class.java)
-                    startActivity(intent)
+                    selected = searchFragment
                 } else if (position == 2) {
                     selected = myFragment
                 }

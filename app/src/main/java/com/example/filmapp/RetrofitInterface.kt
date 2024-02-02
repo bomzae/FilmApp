@@ -14,4 +14,14 @@ interface RetrofitInterface {
         @Query("key") key: String,
         @Query("targetDt") targetDt: String
     ): Call<Map<String, Any>>
+
+    // 영화인 정보 가져오기
+    @GET("/kobisopenapi/webservice/rest/people/searchPeopleList.json")
+    fun searchPeople(
+        @Query("key") key: String,
+        @Query("curPage") curPage: String?,
+        @Query("itemPerPage") itemPerPage: String?,
+        @Query("peopleNm") peopleNm: String?,
+        @Query("filmoNames") filmoNames: String?
+    ): Call<Map<String, Any>>
 }

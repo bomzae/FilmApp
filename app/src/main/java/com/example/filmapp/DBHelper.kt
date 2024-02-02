@@ -57,8 +57,9 @@ class DBHelper(context: Context?) : SQLiteOpenHelper(context, "Login.db", null, 
         contentValues.put("genre", genre)
         contentValues.put("date", date)
         contentValues.put("character", character)
-        contentValues.put("poster", poster)
+        //contentValues.put("poster", ?)
         val result = MyDB.insert("collection", null, contentValues)
+
         return if (result == -1L) false else true // 삽입 성공 여부 반환
     }
 
