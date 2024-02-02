@@ -1,17 +1,14 @@
 package com.example.filmapp
 
 import android.content.Intent
+import android.database.Cursor
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import android.widget.TextView
+import androidx.fragment.app.Fragment
 
 /**
  * A simple [Fragment] subclass.
@@ -19,8 +16,13 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class MyFragment : Fragment() {
+    var DB:DBHelper?=null
+
+    lateinit var userName: TextView // 사용자 이름 텍스트
     lateinit var reviewBtn: Button // 리뷰 등록 버튼
     lateinit var collectionBtn: Button // 컬렉션 등록 버튼
+    lateinit var reviewViewBtn: Button // 컬렉션 등록 버튼
+    lateinit var collectionViewBtn: Button // 컬렉션 등록 버튼
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,21 +36,44 @@ class MyFragment : Fragment() {
 
         view = inflater.inflate(R.layout.fragment_my, container, false)
 
+        userName = view.findViewById(R.id.userName)
         reviewBtn = view.findViewById(R.id.reviewBtn)
+        collectionBtn = view.findViewById(R.id.collectionBtn)
+        reviewViewBtn = view.findViewById((R.id.reviewViewBtn))
+        collectionViewBtn = view.findViewById(R.id.collectionViewBtn)
+
         reviewBtn.setOnClickListener {// 리뷰 등록 페이지로 이동
             val loginIntent = Intent(activity, ReviewActivity::class.java)
             startActivity(loginIntent)
         }
 
-        collectionBtn = view.findViewById(R.id.collectionBtn)
         collectionBtn.setOnClickListener {// 컬렉션 등록 페이지로 이동
             val loginIntent = Intent(activity, CollectionActivity::class.java)
             startActivity(loginIntent)
         }
 
+        reviewViewBtn.setOnClickListener { // 리뷰 확인 페이지로 이동
+            val loginIntent = Intent(activity, ReviewViewActivity::class.java)
+            startActivity(loginIntent)
+        }
+        
+        collectionViewBtn.setOnClickListener {// 컬렉션 확인 페이지로 이동
+            val loginIntent = Intent(activity, CollectionViewActivity::class.java)
+            startActivity(loginIntent)
+        }
+
+        // 사용자 이름 DB에서 받아서 표시하기
+        DB = DBHelper(activity)
+        var MyDB = DB!!.writableDatabase
+        var cursor: Cursor
+        cursor = MyDB!!.rawQuery("select * from recentLogin", null)
+        cursor.moveToNext()
+        userName.setText(cursor.getString(0))
+
         // Inflate the layout for this fragment
         return view
     }
+
 
     companion object {
         /**
@@ -64,8 +89,6 @@ class MyFragment : Fragment() {
         fun newInstance(param1: String, param2: String) =
             MyFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
                 }
             }
     }

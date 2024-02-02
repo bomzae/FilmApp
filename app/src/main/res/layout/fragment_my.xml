@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MyFragment">
 
     <LinearLayout
@@ -27,7 +28,7 @@
                 android:src="@drawable/profile" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/userName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -50,6 +51,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
+                android:backgroundTint="#DFE4F3"
+                android:textColor="#000000"
                 android:text="리뷰 쓰기" />
 
             <Button
@@ -59,7 +62,10 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
+                android:backgroundTint="#DFE4F3"
+                android:textColor="#000000"
                 android:text="컬렉션 등록" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -78,6 +84,19 @@
                 android:text="나의 리뷰"
                 android:textColor="@color/text"
                 android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/reviewViewBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:backgroundTint="#DFE4F3"
+                android:textColor="#000000"
+                android:text="리뷰 보러가기" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -96,6 +115,19 @@
                 android:text="나의 컬렉션"
                 android:textColor="@color/text"
                 android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/collectionViewBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:backgroundTint="#DFE4F3"
+                android:textColor="#000000"
+                android:text="컬렉션 보러가기" />
+
         </LinearLayout>
 
     </LinearLayout>

@@ -164,35 +164,28 @@
             android:layout_marginBottom="5dp">
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="영화 포스터 등록"
-            android:textSize="20sp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginBottom="5dp" />
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/img_selected_photo"
-                android:layout_width="145dp"
-                android:layout_height="180dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp"
-                android:src="@drawable/poster"
-                android:scaleType="centerCrop" />
-
-            <Button
-                android:id="@+id/btn_upload"
-                android:layout_gravity="center"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="업로드" />
+                android:layout_marginBottom="5dp"
+                android:text="기대되는 점"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/edt_summary"
+                android:layout_width="match_parent"
+                android:layout_height="161dp"
+                android:background="#F4DCF4"
+                android:gravity="top|left"
+                android:backgroundTint="#DFE4F3"
+                android:textColor="#000000"
+                android:hint="주요 줄거리나 기대되는 점을 입력하세요." />
 
         </LinearLayout>
 
@@ -203,6 +196,8 @@
             android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="#DFE4F3"
+            android:textColor="#000000"
             android:text="등록"/>
 
     </LinearLayout>

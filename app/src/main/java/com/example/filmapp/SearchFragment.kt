@@ -1,7 +1,9 @@
 package com.example.filmapp
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
@@ -13,16 +15,6 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [SearchFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SearchFragment : Fragment() {
     private val TAG: String = this::class.java.simpleName
     private val API_KEY: String = "de60360c8bbff1f2b861da8ce6a2c67a"
@@ -32,15 +24,15 @@ class SearchFragment : Fragment() {
     private lateinit var edtSearch: EditText
     private lateinit var btnSearch: Button
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        val view = inflater.inflate(R.layout.fragment_search, container, false)
 
         recyclerView = view.findViewById(R.id.recyclerview2)
-        recyclerView.layoutManager = LinearLayoutManager(activity)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         edtSearch = view.findViewById(R.id.edt_search)
         btnSearch = view.findViewById(R.id.btn_search)
@@ -54,6 +46,8 @@ class SearchFragment : Fragment() {
             .baseUrl("http://www.kobis.or.kr")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+
+        return view
     }
 
     private fun searchPeople(searchQuery: String) {
@@ -67,7 +61,7 @@ class SearchFragment : Fragment() {
                     // Adjust the method parameters according to the actual response structure
                     val peopleList: List<Map<String, Any>> = peopleResult["peopleList"] as List<Map<String, Any>>
 
-                    val adapter = Adapter(peopleList)
+                    adapter = Adapter(peopleList)
                     recyclerView.adapter = adapter
                 }
 
@@ -75,21 +69,5 @@ class SearchFragment : Fragment() {
                     // 실패 시 처리
                 }
             })
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SearchFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SearchFragment().apply {
-            }
     }
 }

@@ -2,6 +2,7 @@ package com.example.filmapp
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
@@ -11,9 +12,9 @@ class DBHelper(context: Context?) : SQLiteOpenHelper(context, "Login.db", null, 
     // 테이블 생성
     override fun onCreate(MyDB: SQLiteDatabase) {
         MyDB.execSQL("create Table users(username TEXT primary key, password TEXT)")
-        MyDB.execSQL("create Table film(filmTitle TEXT primary key, director TEXT)")
-        MyDB.execSQL("create Table review(username TEXT primary key, filmTitle TEXT, director TEXT, genre TEXT, date TEXT, rating REAL, review TEXT)")
-        MyDB.execSQL("create Table collection(username TEXT primary key, filmTitle TEXT, director TEXT, genre TEXT, date TEXT, character TEXT, poster BLOB)")
+        MyDB.execSQL("create Table recentLogin(username TEXT primary key, password TEXT)")
+        MyDB.execSQL("create Table review(username TEXT, filmTitle TEXT primary key, director TEXT, genre TEXT, date TEXT, rating REAL, review TEXT)")
+        MyDB.execSQL("create Table collection(username TEXT, filmTitle TEXT primary key, director TEXT, genre TEXT, date TEXT, character TEXT, summary TEXT)")
     }
 
     // 테이블 삭제 후 재생성
@@ -34,7 +35,15 @@ class DBHelper(context: Context?) : SQLiteOpenHelper(context, "Login.db", null, 
 
     // 리뷰 정보 DB에 삽입
     fun insertReview(filmTitle: String?, director: String?, genre: String?, date: String?, rating: Float?, review: String?): Boolean {
+        //var sql = "select * from recentLogin where rowid = last_insert_rowid()"
+        //currentUser = MyDB.execSQL(sql).toString()
+
         var MyDB = this.writableDatabase
+        val cursor: Cursor
+        cursor = MyDB!!.rawQuery("select * from recentLogin", null)
+        cursor.moveToNext()
+        currentUser = cursor.getString(0)
+
         val contentValues = ContentValues()
         contentValues.put("username", currentUser)
         contentValues.put("filmTitle", filmTitle)
@@ -48,8 +57,13 @@ class DBHelper(context: Context?) : SQLiteOpenHelper(context, "Login.db", null, 
     }
 
     // 콜렉션 정보 DB에 삽입
-    fun insertCollection(filmTitle: String?, director: String?, genre: String?, date: String?, character: String?, poster: ByteArray?): Boolean {
+    fun insertCollection(filmTitle: String?, director: String?, genre: String?, date: String?, character: String?, summary: String?): Boolean {
         var MyDB = this.writableDatabase
+        val cursor: Cursor
+        cursor = MyDB!!.rawQuery("select * from recentLogin", null)
+        cursor.moveToNext()
+        currentUser = cursor.getString(0)
+
         val contentValues = ContentValues()
         contentValues.put("username", currentUser)
         contentValues.put("filmTitle", filmTitle)
@@ -57,7 +71,7 @@ class DBHelper(context: Context?) : SQLiteOpenHelper(context, "Login.db", null, 
         contentValues.put("genre", genre)
         contentValues.put("date", date)
         contentValues.put("character", character)
-        //contentValues.put("poster", ?)
+        contentValues.put("summary", summary)
         val result = MyDB.insert("collection", null, contentValues)
 
         return if (result == -1L) false else true // 삽입 성공 여부 반환
@@ -82,7 +96,13 @@ class DBHelper(context: Context?) : SQLiteOpenHelper(context, "Login.db", null, 
         )
         if (cursor.count <= 0) res = false
 
-        if (res == true) currentUser = username
+        if (res == true) {
+            var MyDB = this.writableDatabase
+            val contentValues = ContentValues()
+            contentValues.put("username", username)
+            contentValues.put("password", password)
+            MyDB.insert("recentLogin", null, contentValues)
+        }
 
         return res
     }

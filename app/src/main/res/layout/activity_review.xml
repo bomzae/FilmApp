@@ -176,6 +176,8 @@
                 android:layout_height="161dp"
                 android:background="#F4DCF4"
                 android:gravity="top|left"
+                android:backgroundTint="#DFE4F3"
+                android:textColor="#000000"
                 android:hint="줄거리나 기억에 남는 내용을 입력하세요." />
 
         </LinearLayout>
@@ -185,6 +187,8 @@
             android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:backgroundTint="#DFE4F3"
+            android:textColor="#000000"
             android:text="저장" />
 
     </LinearLayout>

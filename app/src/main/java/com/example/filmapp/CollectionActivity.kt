@@ -29,12 +29,13 @@ class CollectionActivity : AppCompatActivity() {
     private lateinit var spn_genre: Spinner
     private lateinit var edt_date: EditText
     private lateinit var ed_acter: EditText
-    private lateinit var img_selected_photo: ImageView
+    private lateinit var edt_summary: EditText
 
     private lateinit var editTextDate: EditText
     private val PICK_IMAGE_REQUEST = 1
     private lateinit var selectedImageUri: Uri
     private lateinit var imageView: ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_collection)
@@ -44,12 +45,12 @@ class CollectionActivity : AppCompatActivity() {
         spn_genre = findViewById(R.id.spn_genre)
         edt_date = findViewById(R.id.edt_date)
         ed_acter = findViewById(R.id.ed_acter)
-        img_selected_photo = findViewById(R.id.img_selected_photo)
+        edt_summary = findViewById(R.id.edt_summary)
 
         DB = DBHelper(this)
         saveBtn = findViewById(R.id.btn_save)
         saveBtn.setOnClickListener {// DB에 저장 후 메인 페이지로 이동
-            val insert = DB!!.insertCollection(edt_title.text.toString(), edt_director.text.toString(), spn_genre.selectedItem.toString(), edt_date.text.toString(), ed_acter.text.toString(), getByteArrayFromDrawble(img_selected_photo.drawable))
+            val insert = DB!!.insertCollection(edt_title.text.toString(), edt_director.text.toString(), spn_genre.selectedItem.toString(), edt_date.text.toString(), ed_acter.text.toString(), edt_summary.text.toString())
             if (insert == true) {
                 Toast.makeText(
                     this@CollectionActivity,
@@ -83,13 +84,6 @@ class CollectionActivity : AppCompatActivity() {
                 year, month, day
             )
             datePickerDialog.show()
-        }
-
-        imageView = findViewById(R.id.img_selected_photo)
-
-        val btnUpload: Button = findViewById(R.id.btn_upload)
-        btnUpload.setOnClickListener {
-            openGallery()
         }
     }
 
