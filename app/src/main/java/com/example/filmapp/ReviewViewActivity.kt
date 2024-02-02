@@ -28,7 +28,7 @@ class ReviewViewActivity : AppCompatActivity() {
         DB = DBHelper(this)
         var MyDB = DB!!.writableDatabase
         var cursor: Cursor
-        cursor = MyDB!!.rawQuery("select * from recentLogin", null)
+        cursor = MyDB!!.rawQuery("select * from recentLogin order by ROWID desc limit 1", null)
         cursor.moveToNext()
         var userName = cursor.getString(0)
 

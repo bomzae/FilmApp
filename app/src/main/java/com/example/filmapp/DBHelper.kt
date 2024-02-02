@@ -40,7 +40,7 @@ class DBHelper(context: Context?) : SQLiteOpenHelper(context, "Login.db", null, 
 
         var MyDB = this.writableDatabase
         val cursor: Cursor
-        cursor = MyDB!!.rawQuery("select * from recentLogin", null)
+        cursor = MyDB!!.rawQuery("select * from recentLogin order by ROWID desc limit 1", null)
         cursor.moveToNext()
         currentUser = cursor.getString(0)
 
@@ -60,7 +60,7 @@ class DBHelper(context: Context?) : SQLiteOpenHelper(context, "Login.db", null, 
     fun insertCollection(filmTitle: String?, director: String?, genre: String?, date: String?, character: String?, summary: String?): Boolean {
         var MyDB = this.writableDatabase
         val cursor: Cursor
-        cursor = MyDB!!.rawQuery("select * from recentLogin", null)
+        cursor = MyDB!!.rawQuery("select * from recentLogin order by ROWID desc limit 1", null)
         cursor.moveToNext()
         currentUser = cursor.getString(0)
 
