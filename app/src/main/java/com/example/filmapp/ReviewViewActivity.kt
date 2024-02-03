@@ -101,6 +101,9 @@ class ReviewViewActivity : AppCompatActivity() {
         date.textSize = 17f
         date.setTextColor(Color.BLACK)
 
+        val ratingLinearLayout = LinearLayout(this)
+        ratingLinearLayout.orientation = LinearLayout.HORIZONTAL
+
         val rating = RatingBar(this)
         rating.rating = filmRating
         rating.numStars = 5
@@ -116,7 +119,8 @@ class ReviewViewActivity : AppCompatActivity() {
         cardLinearLayout.addView(director)
         cardLinearLayout.addView(genre)
         cardLinearLayout.addView(date)
-        cardLinearLayout.addView(rating)
+        ratingLinearLayout.addView(rating)
+        cardLinearLayout.addView(ratingLinearLayout)
         cardLinearLayout.addView(summary)
         return cardLinearLayout
     }
