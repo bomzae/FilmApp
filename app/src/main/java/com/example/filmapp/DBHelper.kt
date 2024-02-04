@@ -6,15 +6,15 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class DBHelper(context: Context?) : SQLiteOpenHelper(context, "Login.db", null, 1) {
+class DBHelper(context: Context?) : SQLiteOpenHelper(context, "Film.db", null, 1) {
     var currentUser: String ?= null
 
     // 테이블 생성
     override fun onCreate(MyDB: SQLiteDatabase) {
         MyDB.execSQL("create Table users(username TEXT primary key, password TEXT)")
         MyDB.execSQL("create Table recentLogin(username TEXT primary key, password TEXT)")
-        MyDB.execSQL("create Table review(username TEXT, filmTitle TEXT primary key, director TEXT, genre TEXT, date TEXT, rating REAL, review TEXT)")
-        MyDB.execSQL("create Table collection(username TEXT, filmTitle TEXT primary key, director TEXT, genre TEXT, date TEXT, character TEXT, summary TEXT)")
+        MyDB.execSQL("create Table review(username TEXT, filmTitle TEXT, director TEXT, genre TEXT, date TEXT, rating REAL, review TEXT, PRIMARY KEY(username, filmTitle))")
+        MyDB.execSQL("create Table collection(username TEXT, filmTitle TEXT, director TEXT, genre TEXT, date TEXT, character TEXT, summary TEXT, PRIMARY KEY(username, filmTitle))")
     }
 
     // 테이블 삭제 후 재생성
